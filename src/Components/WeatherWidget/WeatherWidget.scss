@@ -1,0 +1,114 @@
+@import "../../mixins";
+@import "../../variables";
+
+.widget {
+  position: relative;
+  background: $primary-background;
+  color: $white;
+  width: 320px;
+  border-radius: 0.2rem;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transform: scale(1);
+  transition: transform 0.25s, box-shadow 0.25s;
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 2px 6px 13px 1px rgba(0, 0, 0, 0.2), 2px 8px 25px 1px rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+  }
+
+  hr {
+    border-top: 0.2px solid grey;
+  }
+
+  &-remove {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    transform: scale(1);
+    transition: transform 0.25s, box-shadow 0.25s;
+    img {
+      width: 2.5rem;
+    }
+    &:hover {
+      transform: scale(1.1);
+    }
+    &:active {
+      transform: scale(1);
+    }
+  }
+
+  &__city {
+    @extend %flex-center;
+    img {
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+
+  &__today {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__icon {
+      @extend %flex-center;
+    }
+    &__data {
+      &-time {
+        font-size: 4rem;
+      }
+      &__stats {
+        display: flex;
+        &-temp {
+          font-size: 3rem;
+          margin-right: 1rem;
+          sup {
+            font-size: 1rem;
+            //margin-left: -12px;
+          }
+        }
+        &-details {
+          font-size: 0.8rem;
+          div > span {
+            font-weight: bold;
+            margin-left: .8rem;
+          }
+          div {
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+  }
+
+  .widget__forecast {
+      display: flex;
+      justify-content: space-around;
+      font-size: 0.7rem;
+    text-align: center;
+      &__day {
+        padding: 1rem 0;
+        &-dow {
+          padding: 1rem 0;
+        }
+        &-icon {
+          @extend %flex-center;
+          img {
+            width: 45px;
+          }
+        }
+        &-temp {
+          margin-top: 1rem;
+          sup {
+            font-size: 0.3rem;
+          }
+          div:first-child {
+            margin-bottom: 5px;
+          }
+        }
+      }
+  }
+}

@@ -1,0 +1,99 @@
+@import '../../variables';
+@import '../../mixins';
+
+.search-bar{
+  height: 33vh;
+  @extend %flex-center;
+  padding: 0 15%;
+  position: relative;
+  background: linear-gradient(#e66465, #7B8FF6);
+
+  &-input {
+    position: relative;
+    margin-right: 1rem;
+    &:focus-within {
+      &::before,
+      &::after {
+        width: 50%;
+      }
+    }
+    &::before {
+      position: absolute;
+      z-index: 1;
+      content: '';
+      height: 100%;
+      width: 0;
+      left: 50%;
+      bottom: 0;
+      border-bottom: 1px solid $white;
+      transition: width .3s;
+    }
+    &::after {
+      position: absolute;
+      z-index: 1;
+      content: '';
+      height: 100%;
+      width: 0;
+      right: 50%;
+      bottom: 0;
+      border-bottom: 1px solid $white;
+      transition: width .3s;
+      &:focus-within {
+        width: 50%;
+      }
+    }
+  }
+
+  input {
+    z-index: 0;
+    display: block;
+    padding: 0.2rem 0.8rem;
+    color: $white;
+    background: transparent;
+    width: 100%;
+    font-size: 2.1rem;
+    line-height: 1.8;
+    border: none;
+    &::placeholder {
+      color: $white;
+    }
+    &:focus {
+      outline: none
+    }
+  }
+
+  button {
+    transform: scale(1);
+    background: transparent;
+    height: 4rem;
+    width: 4rem;
+    border: none;
+    border-radius: 50%;
+    transition: transform .2s;
+    &:focus,
+    &:hover{
+      outline: none;
+      transform: scale(1.1);
+      transform-origin: center center;
+      cursor: pointer
+    }
+    &:active {
+      transform: scale(1);
+    }
+    &:before{
+      position: absolute;
+      content: '';
+      width: 4rem;
+      height: 4rem;
+      top: 0;
+      left: 0;
+      background: url('/images/icons/1.png');
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin: auto;
+}
