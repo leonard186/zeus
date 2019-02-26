@@ -1,13 +1,19 @@
 import React from 'react';
+import {temperatureConvert, localTime} from '../../../Helpers';
 
 class Today extends React.Component {
     render() {
-        const {name, id, min, max, current_temp, humidity, wind_speed, weather} = this.props.details;
+        const symbVal = this.props.symbol;
+        const symbol = symbVal ? <span>&#8451;</span> : <span>&#8457;</span>;
+        const {name, id, min, max, current_temp, humidity, wind_speed, weather, weather_icon, coord} = this.props.details;
+        const icon = `/images/icons/${weather_icon}.png`;
+        console.log(localTime(coord));
 
         return (
             <div className="widget__today">
                 <div className="widget__today__icon">
-                    <img src="/images/icons/33.png" alt="sunny"/>
+                    <img src={icon} alt={weather}/>
+                    <div>{weather}</div>
                 </div>
                 <div className="widget__today__data">
                     <div className="widget__today__data-time">
@@ -16,14 +22,13 @@ class Today extends React.Component {
                     <hr />
                     <div className="widget__today__data__stats">
                         <div className="widget__today__data__stats-temp">
-                            <span>{Math.round(current_temp)}<sup>&#8451;</sup></span>
+                            {Math.round(temperatureConvert(current_temp, symbVal))} <sup>{symbol}</sup>
                         </div>
                         <div className="widget__today__data__stats-details">
-                            <div>Humidity:<span>{humidity}<sup>%</sup></span></div>
+                            <div>Humidity:<span>{humidity}<span>%</span></span></div>
                             <div>Wind: <span>{wind_speed}m/s</span></div>
-                            <div>Weather: <span>{weather}</span></div>
-                            <div>High <span>{max}</span></div>
-                            <div>Low <span>{min}</span></div>
+                            <div>High <span>{Math.round(temperatureConvert(max, symbVal))} {symbol}</span></div>
+                            <div>Low <span>{Math.round(temperatureConvert(min, symbVal))} {symbol}</span></div>
                         </div>
                     </div>
                 </div>
